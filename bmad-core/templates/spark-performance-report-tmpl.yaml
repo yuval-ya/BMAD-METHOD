@@ -1,0 +1,325 @@
+template_name: "Spark Performance Analysis Report"
+template_version: "1.0"
+template_description: "Comprehensive performance analysis report for Spark applications on EMR"
+
+sections:
+  - name: "Executive Summary"
+    description: "High-level overview of application performance and key findings"
+    fields:
+      - name: "application_id"
+        type: "text"
+        prompt: "Spark Application ID"
+        required: true
+      - name: "application_name"
+        type: "text"
+        prompt: "Application Name"
+        required: true
+      - name: "analysis_date"
+        type: "date"
+        prompt: "Analysis Date"
+        required: true
+      - name: "overall_status"
+        type: "select"
+        prompt: "Overall Application Status"
+        options: ["SUCCEEDED", "FAILED", "RUNNING", "KILLED"]
+        required: true
+      - name: "total_duration"
+        type: "text"
+        prompt: "Total Application Duration (e.g., 45m 30s)"
+        required: true
+      - name: "performance_grade"
+        type: "select"
+        prompt: "Performance Grade"
+        options: ["A", "B", "C", "D", "F"]
+        required: true
+      - name: "optimization_potential"
+        type: "text"
+        prompt: "Estimated Optimization Potential (e.g., 30% faster)"
+        required: false
+
+  - name: "Key Findings"
+    description: "Critical performance issues and bottlenecks identified"
+    fields:
+      - name: "primary_bottleneck"
+        type: "textarea"
+        prompt: "Primary Performance Bottleneck"
+        required: true
+      - name: "secondary_issues"
+        type: "textarea"
+        prompt: "Secondary Performance Issues (one per line)"
+        required: false
+      - name: "resource_constraints"
+        type: "textarea"
+        prompt: "Resource Constraints Identified"
+        required: false
+
+  - name: "Performance Metrics"
+    description: "Detailed performance statistics and measurements"
+    fields:
+      - name: "total_jobs"
+        type: "number"
+        prompt: "Total Number of Jobs"
+        required: true
+      - name: "failed_jobs"
+        type: "number"
+        prompt: "Number of Failed Jobs"
+        required: true
+      - name: "total_stages"
+        type: "number"
+        prompt: "Total Number of Stages"
+        required: true
+      - name: "slowest_stage_duration"
+        type: "text"
+        prompt: "Slowest Stage Duration"
+        required: true
+      - name: "total_tasks"
+        type: "number"
+        prompt: "Total Number of Tasks"
+        required: true
+      - name: "failed_tasks"
+        type: "number"
+        prompt: "Number of Failed Tasks"
+        required: true
+      - name: "task_skew_factor"
+        type: "text"
+        prompt: "Task Skew Factor (e.g., 2.5x)"
+        required: false
+
+  - name: "Resource Utilization"
+    description: "Analysis of compute, memory, and I/O resource usage"
+    fields:
+      - name: "peak_executors"
+        type: "number"
+        prompt: "Peak Number of Executors"
+        required: true
+      - name: "avg_cpu_utilization"
+        type: "text"
+        prompt: "Average CPU Utilization (%)"
+        required: true
+      - name: "peak_memory_usage"
+        type: "text"
+        prompt: "Peak Memory Usage (GB)"
+        required: true
+      - name: "memory_spill_events"
+        type: "number"
+        prompt: "Number of Memory Spill Events"
+        required: false
+      - name: "gc_time_percentage"
+        type: "text"
+        prompt: "GC Time Percentage (%)"
+        required: false
+      - name: "shuffle_read_gb"
+        type: "text"
+        prompt: "Total Shuffle Read (GB)"
+        required: false
+      - name: "shuffle_write_gb"
+        type: "text"
+        prompt: "Total Shuffle Write (GB)"
+        required: false
+
+  - name: "EMR Cluster Analysis"
+    description: "EMR-specific performance and configuration analysis"
+    fields:
+      - name: "cluster_id"
+        type: "text"
+        prompt: "EMR Cluster ID"
+        required: true
+      - name: "instance_types"
+        type: "text"
+        prompt: "Instance Types Used (e.g., m5.xlarge)"
+        required: true
+      - name: "cluster_utilization"
+        type: "text"
+        prompt: "Overall Cluster Utilization (%)"
+        required: false
+      - name: "spot_interruptions"
+        type: "number"
+        prompt: "Number of Spot Instance Interruptions"
+        required: false
+      - name: "emr_version"
+        type: "text"
+        prompt: "EMR Version"
+        required: true
+      - name: "spark_version"
+        type: "text"
+        prompt: "Spark Version"
+        required: true
+
+  - name: "Configuration Analysis"
+    description: "Spark configuration settings and their impact"
+    fields:
+      - name: "executor_memory"
+        type: "text"
+        prompt: "Executor Memory Setting"
+        required: true
+      - name: "executor_cores"
+        type: "text"
+        prompt: "Executor Cores Setting"
+        required: true
+      - name: "driver_memory"
+        type: "text"
+        prompt: "Driver Memory Setting"
+        required: true
+      - name: "shuffle_partitions"
+        type: "text"
+        prompt: "SQL Shuffle Partitions"
+        required: true
+      - name: "adaptive_query_enabled"
+        type: "select"
+        prompt: "Adaptive Query Execution Enabled"
+        options: ["true", "false", "unknown"]
+        required: true
+      - name: "dynamic_allocation"
+        type: "select"
+        prompt: "Dynamic Allocation Enabled"
+        options: ["true", "false", "unknown"]
+        required: true
+
+  - name: "Bottleneck Analysis"
+    description: "Detailed analysis of performance bottlenecks"
+    fields:
+      - name: "cpu_bottlenecks"
+        type: "textarea"
+        prompt: "CPU-related Bottlenecks"
+        required: false
+      - name: "memory_bottlenecks"
+        type: "textarea"
+        prompt: "Memory-related Bottlenecks"
+        required: false
+      - name: "io_bottlenecks"
+        type: "textarea"
+        prompt: "I/O-related Bottlenecks"
+        required: false
+      - name: "network_bottlenecks"
+        type: "textarea"
+        prompt: "Network/Shuffle Bottlenecks"
+        required: false
+      - name: "data_skew_issues"
+        type: "textarea"
+        prompt: "Data Skew Issues Identified"
+        required: false
+
+  - name: "Code Analysis Results"
+    description: "Results from static code analysis (if performed)"
+    fields:
+      - name: "code_analysis_performed"
+        type: "select"
+        prompt: "Was code analysis performed?"
+        options: ["Yes", "No"]
+        required: true
+      - name: "performance_antipatterns"
+        type: "textarea"
+        prompt: "Performance Anti-patterns Found"
+        required: false
+      - name: "code_quality_score"
+        type: "text"
+        prompt: "Code Quality Score (A-F)"
+        required: false
+      - name: "critical_code_issues"
+        type: "textarea"
+        prompt: "Critical Code Issues"
+        required: false
+
+  - name: "Recommendations"
+    description: "Actionable recommendations for performance improvement"
+    fields:
+      - name: "high_priority_actions"
+        type: "textarea"
+        prompt: "High Priority Actions (immediate impact)"
+        required: true
+      - name: "medium_priority_actions"
+        type: "textarea"
+        prompt: "Medium Priority Actions (significant improvement)"
+        required: false
+      - name: "low_priority_actions"
+        type: "textarea"
+        prompt: "Low Priority Actions (fine-tuning)"
+        required: false
+      - name: "configuration_changes"
+        type: "textarea"
+        prompt: "Recommended Configuration Changes"
+        required: false
+      - name: "infrastructure_changes"
+        type: "textarea"
+        prompt: "Recommended Infrastructure Changes"
+        required: false
+
+  - name: "Comparative Analysis"
+    description: "Comparison with baseline or previous runs (if available)"
+    fields:
+      - name: "comparison_performed"
+        type: "select"
+        prompt: "Was comparative analysis performed?"
+        options: ["Yes", "No"]
+        required: true
+      - name: "baseline_application_id"
+        type: "text"
+        prompt: "Baseline Application ID"
+        required: false
+      - name: "performance_delta"
+        type: "text"
+        prompt: "Performance Delta (% change)"
+        required: false
+      - name: "regression_analysis"
+        type: "textarea"
+        prompt: "Performance Regression Analysis"
+        required: false
+
+  - name: "Monitoring and Alerting"
+    description: "Recommendations for ongoing monitoring"
+    fields:
+      - name: "key_metrics_to_monitor"
+        type: "textarea"
+        prompt: "Key Metrics to Monitor"
+        required: true
+      - name: "alert_thresholds"
+        type: "textarea"
+        prompt: "Recommended Alert Thresholds"
+        required: false
+      - name: "monitoring_tools"
+        type: "textarea"
+        prompt: "Recommended Monitoring Tools"
+        required: false
+
+  - name: "Follow-up Actions"
+    description: "Next steps and validation plan"
+    fields:
+      - name: "immediate_next_steps"
+        type: "textarea"
+        prompt: "Immediate Next Steps"
+        required: true
+      - name: "validation_plan"
+        type: "textarea"
+        prompt: "Plan to Validate Improvements"
+        required: true
+      - name: "timeline"
+        type: "textarea"
+        prompt: "Implementation Timeline"
+        required: false
+      - name: "success_criteria"
+        type: "textarea"
+        prompt: "Success Criteria"
+        required: true
+
+  - name: "Appendix"
+    description: "Additional technical details and references"
+    fields:
+      - name: "mcp_tools_used"
+        type: "textarea"
+        prompt: "MCP Tools Used in Analysis"
+        required: false
+      - name: "log_analysis_summary"
+        type: "textarea"
+        prompt: "Log Analysis Summary"
+        required: false
+      - name: "additional_notes"
+        type: "textarea"
+        prompt: "Additional Technical Notes"
+        required: false
+      - name: "references"
+        type: "textarea"
+        prompt: "References and Documentation Links"
+        required: false
+
+output_format: "markdown"
+filename_pattern: "spark-performance-report-{application_id}-{analysis_date}.md"

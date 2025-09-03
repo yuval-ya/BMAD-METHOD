@@ -9,6 +9,7 @@ agents:
   - pm
   - architect
   - po
+  - spark-emr-expert
 workflows:
   - greenfield-service.yaml
   - brownfield-service.yaml
