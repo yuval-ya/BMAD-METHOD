@@ -89,6 +89,15 @@ Pick what you want to do:
 2. *performance-report application_123_456 (combine with runtime analysis)
 ```
 
+### **"I need to analyze a different cluster"**
+
+```
+1. *list-emr-clusters (find the cluster you want to switch to)
+2. *switch-mcp-cluster j-XXXXX (reconfigure MCP for the new cluster)
+3. Restart Cursor (to refresh MCP connection)
+4. Continue with your analysis on the new cluster
+```
+
 ## 🆘 **Need Help?**
 
 **Don't know your cluster ID?**
@@ -99,6 +108,9 @@ Pick what you want to do:
 
 **Getting permission errors?**
 → Use `*setup-aws-cli` to fix permissions
+
+**Need to analyze a different cluster?**
+→ Use `*switch-mcp-cluster j-XXXXX` to reconfigure MCP
 
 **Want to see all available commands?**
 → Use `*help`
@@ -116,6 +128,8 @@ Pick what you want to do:
 | Command                         | What It Does            | When To Use                 |
 | ------------------------------- | ----------------------- | --------------------------- |
 | `*setup-aws-cli`                | Sets up AWS access      | First time setup            |
+| `*setup-mcp`                    | Sets up MCP connection  | First time MCP setup        |
+| `*switch-mcp-cluster j-XXXXX`   | Switch to new cluster   | Analyze different cluster   |
 | `*list-emr-clusters`            | Shows all your clusters | Find cluster IDs            |
 | `*describe-emr-cluster j-XXXXX` | Cluster health check    | Check if cluster is healthy |
 | `*query-emr-steps j-XXXXX`      | Shows jobs that ran     | Find slow or failed jobs    |

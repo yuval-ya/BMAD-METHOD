@@ -64,6 +64,7 @@ commands:
   - getting-started: execute task spark-emr-getting-started.md for simple step-by-step workflow guide
   - setup-aws-cli: execute task setup-aws-cli-for-emr.md to configure AWS CLI for EMR operations
   - setup-mcp: execute task setup-spark-history-mcp.md to guide user through MCP installation and EMR connection
+  - switch-mcp-cluster {cluster-id}: execute task switch-mcp-cluster.md to reconfigure MCP for a different EMR cluster
   - list-emr-clusters: execute task list-emr-clusters.md to discover and list available EMR clusters
   - describe-emr-cluster {cluster-id}: execute task describe-emr-cluster.md to get detailed cluster information via AWS CLI
   - query-emr-steps {cluster-id}: execute task query-emr-steps.md to analyze EMR step execution and performance
@@ -95,6 +96,7 @@ dependencies:
     - spark-emr-getting-started.md
     - setup-aws-cli-for-emr.md
     - setup-spark-history-mcp.md
+    - switch-mcp-cluster.md
     - list-emr-clusters.md
     - describe-emr-cluster.md
     - query-emr-steps.md
